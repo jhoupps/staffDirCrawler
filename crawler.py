@@ -2,4 +2,6 @@
 
 #A project by J. Houppermans, for an Informatics 300 Group Project
 
-print("testing 1,2,3... Hello world")
+url = 'http://www.washington.edu/home/peopledir/'
+
+print(url)
