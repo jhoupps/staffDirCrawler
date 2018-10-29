@@ -2,6 +2,14 @@
 
 #A project by J. Houppermans, for an Informatics 300 Group Project
 
+import requests
+
 url = 'http://www.washington.edu/home/peopledir/'
 
-print(url)
+r = requests.post(url, data={'term': 'Information School', 'method': 'dept', 'whichdir': 'staff', 'length': 'full'})
+
+print(r.status_code, r.reason)
+
+print("Web Content: \n \n ~~~~~~~~ \n \n")
+
+print(r.text)
