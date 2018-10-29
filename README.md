@@ -1,5 +1,5 @@
-# staffDirCrawler
-A web crawler for the UW staff Directory
+# staffDirScraper
+A web Scraper for the UW staff Directory
 
 This project is offered without a licence, and is intended for one of my assignments. It's public because I'm not willing to spend money to make it private, so it's open source now, I guess. 
 
