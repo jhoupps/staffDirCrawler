@@ -9,19 +9,17 @@ url = 'http://www.washington.edu/home/peopledir/'
 
 r = requests.post(url, data={'term': 'Information School', 'method': 'dept', 'whichdir': 'staff', 'length': 'full'})
 
-#DEBUG print(r.status_code, r.reason)
-
 soup = BeautifulSoup(r.text, 'html.parser')
 
 names = soup.select("div.contentcell h3")
-#for person in names:
- #   print(person.string)
-
 titles = soup.select("div.contentcell ul.multiaddr")
-for person in titles:
-    jobs = person.descendants
-    for position in jobs:
-        print(position.string)
-    print("\n ---- \n")
 
-#progress note - when descendents was contents, it only showed the last one. swapped to descendants, now it repeats one of them
+for name, titles in zip(names, titles):
+    print(name.string)
+    jobs = titles.descendants
+    sketchy_work_around = ""
+    for job in jobs:
+        if str(job.string) != "None":
+            if str(job.string) != sketchy_work_around:
+                print(job.string)
+                sketchy_work_around = str(job.string)
