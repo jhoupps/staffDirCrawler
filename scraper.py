@@ -37,8 +37,11 @@ with open('position_data.csv', 'w', newline='') as csvfile:
         titles = soup.select("div.contentcell ul.multiaddr")
 
         for name, titles in zip(names, titles):
-            #print(name.string)
-            row_contents = [name.string, department]
+            clean_name = name.string.replace("'", "")
+            clean_name = clean_name.replace("&apos;", "")
+            clean_name = clean_name.replace(", MD", "")
+            clean_name = clean_name.replace(",", "")
+            row_contents = [clean_name, department]
             jobs = titles.descendants
             sketchy_work_around = ""
             for job in jobs:
