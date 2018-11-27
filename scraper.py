@@ -30,6 +30,16 @@ with open('position_data.csv', 'w', newline='') as csvfile:
     output = output[1:] #removes "home" from the department list
     #correcting for missing departments
     output.append("Information School")
+    output.append("SSW: Academic Affairs")
+    output.append("UWT: Student Involvement")
+    output.append("CC: IELP Admissions")
+
+    #correcting more, from a csv based on the department list
+    with open('full_department_list.csv') as csvfile:
+        depreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in depreader:
+            output.append(row[0])
+
     #Part two - method that sends requests to the staff directory 
 
     url2 = 'http://www.washington.edu/home/peopledir/'
@@ -44,7 +54,6 @@ with open('position_data.csv', 'w', newline='') as csvfile:
         #titles = soup.select("div.contentcell ul.multiaddr")
         titles_listing = soup.select("ul.dir-listing")
 
-        ##debug - complete rewrite that next section, snag algorithms from it as needed
         #documentation note - titles_html_block is a bs4 tag
 
         for name, titles_html_block in zip(names, titles_listing):
@@ -75,7 +84,9 @@ with open('position_data.csv', 'w', newline='') as csvfile:
             elif(len(solo) > 0):
                 both_kinds_list = solo[0].select("li")
 
-            row_contents = [clean_name, clean_department]
+            #row_contents = [clean_name, clean_department]
+            #removing department column to clean the data more for people in multiple
+            row_contents = [clean_name]
 
             if(len(both_kinds_list) > 0):
                 for title in both_kinds_list:
@@ -89,7 +100,7 @@ with open('position_data.csv', 'w', newline='') as csvfile:
                     row_contents.append(clean_job.strip())
                     row_contents.append(clean_job_department.strip())
                     
-                    filewriter.writerow(row_contents)
+                filewriter.writerow(row_contents)
 
     #Part 3 - actually searching the directory
 

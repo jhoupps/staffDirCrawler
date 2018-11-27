@@ -2,3 +2,4 @@ A list of known problems in the code
 
 *not all departments from the UW department listing have entries in the UW staff directory
 
+*merged csv has problems due to ^ and due to name inconsistencies

@@ -18,8 +18,10 @@ for(i in 1:length(salary$Name)){
 
 salary$Name <- clean_names
 
-merged = merge(x = salary, y = jobs, by = "Name", all.x = TRUE)
+merged <- merge(x = salary, y = jobs, by = "Name", all.x = TRUE)
+clean_merge <- merged[!duplicated(merged), ]
 
+write.csv(clean_merge, file = "merged_output.csv")
 
 
 
