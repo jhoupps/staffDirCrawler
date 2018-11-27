@@ -28,6 +28,8 @@ with open('position_data.csv', 'w', newline='') as csvfile:
     for dep_name in dep_names:
         output.append(str(dep_name.string))
     output = output[1:] #removes "home" from the department list
+    #correcting for missing departments
+    output.append("Information School")
     #Part two - method that sends requests to the staff directory 
 
     url2 = 'http://www.washington.edu/home/peopledir/'
